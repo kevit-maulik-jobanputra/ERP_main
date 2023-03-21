@@ -6,7 +6,8 @@ const compression = require('compression');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const { PORT, NODE_ENV } = require('./environment/config');
-const { url } = require('./databases/mongodb')
+const { url } = require('./databases/mongodb');
+const { errorHandler } = require('./middlewares/errorHandler');
 
 class App{
     constructor(){
@@ -18,6 +19,7 @@ class App{
         this.databaseConnection();
         this.initializeRoutes();
         this.initializeMiddleWares();
+        this.initializeErrorHandler();
     };
 
     databaseConnection(){
@@ -40,6 +42,10 @@ class App{
         this.app.use(cors());
         this.app.use(bodyParser.urlencoded({extended:true}));
         this.app.use(bodyParser.json());
+    };
+
+    initializeErrorHandler(){
+        this.app.use(errorHandler());
     };
 
     listen(){
