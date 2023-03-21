@@ -1,0 +1,21 @@
+{
+  "name": "erp_main",
+  "version": "1.0.0",
+  "description": "A college database portal for maintaining student data.",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevit-maulik-jobanputra/ERP_main.git"
+  },
+  "author": "Maulik Jobanputra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevit-maulik-jobanputra/ERP_main/issues"
+  },
+  "homepage": "https://github.com/kevit-maulik-jobanputra/ERP_main#readme"
+}
