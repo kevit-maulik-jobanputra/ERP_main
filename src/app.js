@@ -4,11 +4,11 @@ const hpp = require('hpp');
 const helmet = require('helmet');
 const compression = require('compression');
 const cors = require('cors');
+const { PORT } = require('./environment/config')
 
 class App{
     constructor(){
         this.app = express();
-        this.PORT = 3000;
         this.router = express.Router();
         this.router.get('/', (req,res) => {
             res.send("Hello")
@@ -31,8 +31,8 @@ class App{
     };
 
     listen(){
-        this.app.listen(this.PORT, () => {
-            console.log(`Server Up and running at ${this.PORT}!`)
+        this.app.listen(PORT, () => {
+            console.log(`Server Up and running at ${PORT}!`)
         });
     };
 }
