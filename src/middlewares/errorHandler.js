@@ -10,15 +10,19 @@ class Err extends Error{
 };
 
 const errorHandler = (err, req, res, next) => {
-    let meta = {traceId : req.id};
+    let meta;
     if(err.meta){
-        meta = {...meta, ...err.meta}
+        meta = {...err.meta, ...{traceId : req.id}}
+    }else{
+        meta = {traceId: req.id}
     };
 
-    if(err && err.originalError){
+    if(err && err.originalError && err.statusCode){
+        console.log(`${err.errCode} >> ${err.message} >> ${err.originalError}`);
+    }else if(err && err.originalError){
         console.log(`${err.originalError} >> ${err.message}`);
     }else if(err && err.errCode){
-        console.log(`${err.errCode} >> ${err.message} >> ${meta}`)
+        console.log(`${err.errCode} >> ${err.message}`);
     }else{
         console.log(err);
     };
