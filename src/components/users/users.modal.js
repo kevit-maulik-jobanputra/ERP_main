@@ -95,6 +95,34 @@ const userSignupValidationSchema = {
     }
 };
 
+const userUpdateValidationSchema = {
+    firstName : {
+        trim: true,
+        isLength: {
+            options: {min:3},
+            errorMessage: "First name must contain atleast 3 alphabets!"
+        }
+    },
+    lastName : {
+        trim: true,
+        isLength: {
+            options: {min:3},
+            errorMessage: "Last name must contain atleast 3 alphabets!"
+        }
+    },
+    dept: {
+        trim: true,
+        isEmpty: {
+            negated: true,
+            errorMessage: "Dept cannot be empty!"
+        }
+    },
+    password: {
+        isStrongPassword: true,
+        errorMessage: 'Password must have min 8 characters, 1 lowercase alphabet, 1 uppercase alphabet, 1 numeric alphabet & 1 symbol!'
+    },
+};
+
 const userLoginValidationSchema = {
     email: {
         trim: true,
@@ -118,4 +146,4 @@ userSchema.pre('save', async function (next) {
 
 const User = mongoose.model('User', userSchema);
 
-module.exports = { User, userSignupValidationSchema, userLoginValidationSchema };
+module.exports = { User, userSignupValidationSchema, userLoginValidationSchema, userUpdateValidationSchema };

@@ -11,7 +11,7 @@ class Err extends Error{
 const errorHandler = (err, req, res, next) => {
     
     if(err && err.originalError && err.statusCode){
-        console.log(`${err.errCode} >> ${err.message} >> ${err.originalError}`);
+        console.log(`${err.errCode} >> ${err.message} >> ${JSON.stringify(err.originalError,null,2)}`);
     }else if(err && err.errCode){
         console.log(`${err.errCode} >> ${err.message}`);
     }else{

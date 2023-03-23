@@ -15,15 +15,15 @@ const env = cleanEnv(process.env, {
         devDefault: 'mongodb://127.0.0.1:27017/erp-dev'
     })
 });
-const JWT_PUBLIC = fs.readFileSync(__dirname+'/../keys/JWT_public.key', "utf8");
-const JWT_PRIVATE = fs.readFileSync(__dirname+'/../keys/JWT_private.key', "utf8");
+const JWT_STAFF = fs.readFileSync(__dirname+'/../keys/JWT_staff.key', "utf8");
+const JWT_ADMIN = fs.readFileSync(__dirname+'/../keys/JWT_admin.key', "utf8");
 
 const environment = {
     PORT : env.PORT,
     NODE_ENV: env.NODE_ENV,
     MONGO_URL: env.MONGO_URL,
-    JWT_PRIVATE,
-    JWT_PUBLIC
+    JWT_ADMIN,
+    JWT_STAFF
 };
 
 module.exports = environment;

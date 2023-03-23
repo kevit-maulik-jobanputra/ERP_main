@@ -1,6 +1,6 @@
 const { Err } = require('./errorHandler');
 const jwt = require('jsonwebtoken');
-const { JWT_PRIVATE, JWT_PUBLIC } = require('../environment/config');
+const { JWT_ADMIN, JWT_STAFF } = require('../environment/config');
 const { User } = require('../components/users/users.modal');
 
 const authenticate = async (req, res, next) => {
@@ -9,7 +9,7 @@ const authenticate = async (req, res, next) => {
         next(new Err(401, 'Login First!', "AUTHENTICATION_FAILED"));
     }else{
         try {
-            const { _id } = jwt.verify(token, JWT_PUBLIC);
+            const { _id } = jwt.verify(token, JWT_STAFF);
             const user = await User.findById(_id);
             if(user.token === token){
                 req.staffId = _id;
@@ -18,7 +18,7 @@ const authenticate = async (req, res, next) => {
             }
         } catch (error) {
             try {
-                const { _id } = jwt.verify(token, JWT_PRIVATE);
+                const { _id } = jwt.verify(token, JWT_ADMIN);
                 const user = await User.findById(_id);
                 if(user.token === token){
                     req.adminId = _id;
