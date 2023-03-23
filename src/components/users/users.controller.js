@@ -1,4 +1,4 @@
-const { createSingleUser, findUsers, findByEmail, findById } = require('./user.DAL');
+const { createSingleUser, findUsers, findByEmail, findById } = require('./users.DAL');
 const { Err } = require('../../middlewares/errorHandler');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');

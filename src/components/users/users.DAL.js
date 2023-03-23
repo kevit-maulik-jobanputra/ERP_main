@@ -1,4 +1,4 @@
-const { User } = require("../users/users.modal");
+const { User } = require("./users.modal");
 const { Err } = require('../../middlewares/errorHandler');
 
 const createSingleUser = async (body, next) => {
