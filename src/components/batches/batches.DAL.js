@@ -23,6 +23,6 @@ const getBatchById = async (id, next) => {
     } catch (error) {
         next(new Err(400, "No batch found!", "BAD_REQUEST"))
     }
-}
+};
 
 module.exports = { createBatch, findBatches, getBatchById };

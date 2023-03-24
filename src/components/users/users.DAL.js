@@ -31,6 +31,6 @@ const findById = async (id, next) => {
     } catch (error) {
         next(new Err(400, "No user found!", "BAD_REQUEST"))
     }
-}
+};
 
 module.exports = { createSingleUser, findUsers, findByEmail, findById };

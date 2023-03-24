@@ -70,11 +70,15 @@ const updateUser = async (req, res, next) => {
         } else {
             const { id } = req.params;
             const user = await findById(id, next);
-            for(const field in req.body){
-                user[field] = req.body[field];
-            };
-            await user.save();
-            res.status(200).json(user);
+            if(user){
+                for(const field in req.body){
+                    user[field] = req.body[field];
+                };
+                await user.save();
+                res.status(200).json(user);
+            }else{
+                next(new Err(400, "No user found!", "BAD_REQUEST"))
+            }
         }
     } catch (error) {
         next(error)
@@ -88,7 +92,6 @@ const logOut = async(req, res, next) => {
         } else {
             const id = !req.adminId ? req.staffId : req.adminId;
             const user = await findById(id, next);
-            console.log(user)
             user.token = undefined;
             await user.save();
             res.status(200).json({message : "User loggedOut Successfully!"});
@@ -105,8 +108,12 @@ const deleteUser = async (req, res, next) => {
         }else{
             const { id } = req.params;
             const user = await findById(id, next);
-            await user.deleteOne();
-            res.status(200).json(user);
+            if(user){
+                await user.deleteOne();
+                res.status(200).json(user);
+            }else{
+                next(new Err(400, "No user found!", "BAD_REQUEST"))
+            }
         }
     } catch (error) {
         next(error)
