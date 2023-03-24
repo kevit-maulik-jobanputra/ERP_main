@@ -121,6 +121,36 @@ const userUpdateValidationSchema = {
         isStrongPassword: true,
         errorMessage: 'Password must have min 8 characters, 1 lowercase alphabet, 1 uppercase alphabet, 1 numeric alphabet & 1 symbol!'
     },
+    email: {
+        trim: true,
+        isEmail: true,
+        errorMessage: "Enter a valid email!",
+        custom: {
+            options: ((value, {req}) => {
+                return User.findOne({email:value})
+                .then(user => {
+                    if(user._id.toHexString() !== req.params.id){
+                        throw new Error('Email already exists!')
+                    };
+                    return true;
+                })
+            })
+        }
+    },
+    isAdmin: {
+        isBoolean: true,
+        custom: {
+            options: ((value, {req}) => {
+                return User.findOne({isAdmin:value})
+                .then(user => {
+                    if(user._id.toHexString() !== req.params.id){
+                        throw new Error('Admin already exists!')
+                    };
+                    return true;
+                })
+            })
+        }
+    }
 };
 
 const userLoginValidationSchema = {

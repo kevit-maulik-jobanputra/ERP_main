@@ -1,4 +1,4 @@
-const { User } = require("./users.modal");
+const { User } = require("./users.model");
 const { Err } = require('../../middlewares/errorHandler');
 
 const createSingleUser = async (body, next) => {
@@ -29,7 +29,7 @@ const findById = async (id, next) => {
     try {
         return await User.findById(id)
     } catch (error) {
-        next(new Err(500, 'An unexpected error occurred!', 'INTERNAL_SERVER_ERROR!', error))
+        next(new Err(400, "No user found!", "BAD_REQUEST"))
     }
 }
 

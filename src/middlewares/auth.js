@@ -1,7 +1,7 @@
 const { Err } = require('./errorHandler');
 const jwt = require('jsonwebtoken');
 const { JWT_ADMIN, JWT_STAFF } = require('../environment/config');
-const { User } = require('../components/users/users.modal');
+const { User } = require('../components/users/users.model');
 
 const authenticate = async (req, res, next) => {
     const token = req.headers.auth_token;

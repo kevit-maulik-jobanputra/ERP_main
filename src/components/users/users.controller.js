@@ -69,23 +69,34 @@ const updateUser = async (req, res, next) => {
             next(new Err(403, 'You are not authorized!', "AUTHORIZATION_FAILED"))
         } else {
             const { id } = req.params;
-            const user = await findById(id);
-            if(!user){
-                next(new Err(400, "No user found!", "BAD_REQUEST"))
-            }else{
-                for(const field in req.body){
-                    if(!["email", "isAdmin"].includes(field)){
-                        user[field] = req.body[field];
-                    }
-                };
-                await user.save();
-                res.status(200).json(user);
-            }
+            const user = await findById(id, next);
+            for(const field in req.body){
+                user[field] = req.body[field];
+            };
+            await user.save();
+            res.status(200).json(user);
         }
     } catch (error) {
         next(error)
     }
 };
+
+const logOut = async(req, res, next) => {
+    try {
+        if (!req.adminId && !req.staffId) {
+            next(new Err(401, 'Login First!', "AUTHENTICATION_FAILED"))
+        } else {
+            const id = !req.adminId ? req.staffId : req.adminId;
+            const user = await findById(id, next);
+            console.log(user)
+            user.token = undefined;
+            await user.save();
+            res.status(200).json({message : "User loggedOut Successfully!"});
+        }
+    } catch (error) {
+        next(error)
+    }
+}
 
 const deleteUser = async (req, res, next) => {
     try {
@@ -93,17 +104,13 @@ const deleteUser = async (req, res, next) => {
             next(new Err(403, 'You are not authorized!', "AUTHORIZATION_FAILED"))
         }else{
             const { id } = req.params;
-            const user = await findById(id);
-            if(!user){
-                next(new Err(400, "No user found!", "BAD_REQUEST"))
-            }else{
-                await user.deleteOne();
-                res.status(200).json(user);
-            }
+            const user = await findById(id, next);
+            await user.deleteOne();
+            res.status(200).json(user);
         }
     } catch (error) {
         next(error)
     }
 };
 
-module.exports = { signUpUser, getUsers, loginUser, deleteUser, updateUser }
+module.exports = { signUpUser, getUsers, loginUser, deleteUser, updateUser, logOut }

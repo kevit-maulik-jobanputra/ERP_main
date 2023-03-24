@@ -1,7 +1,7 @@
 const express = require('express');
-const { signUpUser, getUsers, loginUser, deleteUser, updateUser } = require('./users.controller');
+const { signUpUser, getUsers, loginUser, deleteUser, updateUser, logOut } = require('./users.controller');
 const validator = require('../../middlewares/validator');
-const { userSignupValidationSchema, userLoginValidationSchema, userUpdateValidationSchema } = require('./users.modal');
+const { userSignupValidationSchema, userLoginValidationSchema, userUpdateValidationSchema } = require('./users.model');
 const authenticate = require('../../middlewares/auth')
 
 class UserRouter{
@@ -26,6 +26,9 @@ class UserRouter{
 
         // Remove User
         this.router.delete('/users/remove/:id', authenticate, deleteUser);
+
+        // LogOut User
+        this.router.post('/users/logout', authenticate, logOut);
     };
 
 }
