@@ -1,6 +1,5 @@
 const { Err } = require('../../middlewares/errorHandler');
 const { createStudent, findStudents, findStudentById } = require('./students.DAL');
-const { getBatchById } = require('../batches/batches.DAL');
 const { addStudentToAttendance, removeStudentFromAttendance } = require('../attendances/attendances.DAL');
 
 const addStudent = async (req, res, next) => {
@@ -26,7 +25,12 @@ const getStudents = async (req, res, next) => {
         if(!req.adminId && !req.staffId){
             next(new Err(401, 'Login first!', "AUTHENTICATION_FAILED"));
           }else{
-            const students = await findStudents(next);
+            for (const field in req.query){
+              if(["contact", "batch", "currentSem"].includes(field)){
+                req.query[field] = Number(req.query[field])
+              }
+            }
+            const students = await findStudents(req.query, next);
             if(students){
               res.status(200).json(students);
             }

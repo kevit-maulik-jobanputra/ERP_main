@@ -17,7 +17,7 @@ const findStudentById = async (id, next) => {
     }
 };
 
-const findStudents = async (next) => {
+const findStudents = async (queryObj, next) => {
     try {
         return await Student.aggregate([
             {
@@ -79,6 +79,9 @@ const findStudents = async (next) => {
                   batch: 1,
                   branch: "$branch.name",
                 },
+            },
+            {
+              $match : queryObj
             },
           ]);
     } catch (error) {
