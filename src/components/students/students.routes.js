@@ -1,5 +1,5 @@
 const express = require('express');
-const { addStudent, getStudents, removeStudent, updateStudent } = require('./students.controller');
+const { addStudent, getStudents, removeStudent, updateStudent, getTotalStudents } = require('./students.controller');
 const validator = require('../../middlewares/validator');
 const { studentValidationSchema } = require('./students.model');
 const authenticate = require('../../middlewares/auth');
@@ -17,6 +17,9 @@ class StudentRouter{
 
         // Listing Students
         this.router.get('/students', authenticate, getStudents);
+
+        // Listing Total Students YearWise & BranchWise
+        this.router.get('/students/yearlyanalytics', authenticate, getTotalStudents)
 
         // Updating a Student
         this.router.put('/students/update/:id', validator(studentValidationSchema), authenticate, updateStudent)

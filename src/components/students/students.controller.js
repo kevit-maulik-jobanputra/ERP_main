@@ -1,5 +1,5 @@
 const { Err } = require('../../middlewares/errorHandler');
-const { createStudent, findStudents, findStudentById } = require('./students.DAL');
+const { createStudent, findStudents, findStudentById, findTotalStudents } = require('./students.DAL');
 const { addStudentToAttendance, removeStudentFromAttendance } = require('../attendances/attendances.DAL');
 
 const addStudent = async (req, res, next) => {
@@ -31,6 +31,20 @@ const getStudents = async (req, res, next) => {
               }
             }
             const students = await findStudents(req.query, next);
+            if(students){
+              res.status(200).json(students);
+            }
+          }
+    } catch (error) {
+        next(error);
+    }
+};
+const getTotalStudents = async (req, res, next) => {
+    try {
+        if(!req.adminId && !req.staffId){
+            next(new Err(401, 'Login first!', "AUTHENTICATION_FAILED"));
+          }else{
+            const students = await findTotalStudents(next);
             if(students){
               res.status(200).json(students);
             }
@@ -82,4 +96,4 @@ const removeStudent = async (req, res, next) => {
     };
 };
 
-module.exports = { addStudent, getStudents, removeStudent, updateStudent };
+module.exports = { addStudent, getStudents, removeStudent, updateStudent, getTotalStudents };
