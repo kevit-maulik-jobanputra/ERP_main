@@ -1,5 +1,5 @@
 const { Err } = require('../../middlewares/errorHandler');
-const { findStudentById, getAttendances } = require('./attendances.DAL');
+const { findStudentById, getAttendances, getFractionalAttendance } = require('./attendances.DAL');
 const { Attendance } = require('./attendances.model');
 
 const addAttendance = async (req, res, next) => {
@@ -102,6 +102,31 @@ const getAbsentees = async (req, res, next) => {
     } catch (error) {
         next(error)
     }
+};
+
+const filterAbsentees = async (req, res, next) => {
+    try {
+        if(!req.adminId && !req.staffId){
+            next(new Err(401, 'Login first!', "AUTHENTICATION_FAILED"));
+        }else{
+            const { percent } = req.params;
+            if(percent.match(/^[1-9][0-9]?$|^100$/) === null){
+                next(new Err(400, "Enter a valid percentage!", "BAD_REQUEST"))
+            }else{
+                for (const field in req.query){
+                    if(["contact", "batch", "currentSem"].includes(field)){
+                      req.query[field] = Number(req.query[field])
+                    }
+                }
+                const students = await getFractionalAttendance(Number(percent), req.query, next);
+                if(students){
+                    res.status(200).json(students);
+                }
+            }
+        }
+    } catch (error) {
+        next(error)
+    }
 }
 
-module.exports = { addAttendance, removeAttendance, updateAttendance, getAbsentees };
+module.exports = { addAttendance, removeAttendance, updateAttendance, getAbsentees, filterAbsentees };
