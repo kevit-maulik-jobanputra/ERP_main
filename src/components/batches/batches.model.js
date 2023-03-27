@@ -74,29 +74,6 @@ const branchValidationSchema = {
 };
 
 const updateBranchValidationSchema = {
-    name: {
-        trim: true,
-        isString: true,
-        errorMessage: "Name should not be a number!",
-        isLength: {
-            options: {min: 2},
-            errorMessage: "Name should contain atleast 2 characters!"
-        },
-        custom: {
-            options: ((value, {req}) => {
-                return Batch.findById(req.params.batchId)
-                .then(batch => {
-                    const duplicateBranch = batch.branches.find(branch => branch.name === value);
-                    if(duplicateBranch){
-                        if(duplicateBranch.name !== req.params.branchName){
-                            throw new Error('Branch already exists!')
-                        }
-                    };
-                    return true;
-                })
-            })
-        }
-    },
     totalStudentsIntake: {
         trim: true,
         isEmpty: {

@@ -1,6 +1,7 @@
 const { Err } = require('../../middlewares/errorHandler');
 const { createStudent, findStudents, findStudentById } = require('./students.DAL');
 const { getBatchById } = require('../batches/batches.DAL');
+const { addStudentToAttendance, removeStudentFromAttendance } = require('../attendances/attendances.DAL');
 
 const addStudent = async (req, res, next) => {
     try {
@@ -9,7 +10,10 @@ const addStudent = async (req, res, next) => {
       }else{
         const student = await createStudent(req.body, next);
         if(student){
+          const attendanceStudent = await addStudentToAttendance({student: student._id}, next);
+          if(attendanceStudent){
             res.status(200).json(student);
+          }
         }
       }
     } catch (error) {
@@ -24,7 +28,7 @@ const getStudents = async (req, res, next) => {
           }else{
             const students = await findStudents(next);
             if(students){
-                res.status(200).json(students);
+              res.status(200).json(students);
             }
           }
     } catch (error) {
@@ -41,7 +45,7 @@ const updateStudent = async (req, res, next) => {
         const student = await findStudentById(id, next);
         if(student){
             for(const field in req.body){
-                student[field] = req.body[field]
+              student[field] = req.body[field]
             };
             await student.save();
             res.status(200).json(student);
@@ -63,6 +67,7 @@ const removeStudent = async (req, res, next) => {
         const student = await findStudentById(id, next);
         if(student){
             await student.deleteOne();
+            await removeStudentFromAttendance(student._id, next)
             res.status(200).json(student);
         }else{
             next(new Err(400, "No student found!", "BAD_REQUEST"))
