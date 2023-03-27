@@ -1,5 +1,6 @@
 const { Err } = require('../../middlewares/errorHandler');
-const { findStudentById } = require('./attendances.DAL');
+const { findStudentById, getAttendances } = require('./attendances.DAL');
+const { Attendance } = require('./attendances.model');
 
 const addAttendance = async (req, res, next) => {
     try {
@@ -70,4 +71,37 @@ const removeAttendance = async (req, res, next) => {
     }
 };
 
-module.exports = { addAttendance, removeAttendance, updateAttendance };
+const getAbsentees = async (req, res, next) => {
+    try {
+        if(!req.adminId && !req.staffId){
+            next(new Err(401, 'Login first!', "AUTHENTICATION_FAILED"));
+        }else{
+            const { date } = req.params;
+            const isValidDate = (dateString => {
+                const regEx = /^\d{4}-\d{2}-\d{2}$/;
+                if(!dateString.match(regEx)) return false;
+                const d = new Date(dateString);
+                const dNum = d.getTime();
+                if(!dNum && dNum !== 0) return false;
+                return d.toISOString().slice(0,10) === dateString;
+            });
+            if(!isValidDate(date)){
+                next(new Err(400, "Enter a valid date!", "BAD_REQUEST"))
+            }else{
+                for (const field in req.query){
+                    if(["contact", "batch", "currentSem"].includes(field)){
+                      req.query[field] = Number(req.query[field])
+                    }
+                }
+                const students = await getAttendances(date, req.query, next);
+                if(students){
+                    res.status(200).json(students);
+                }
+            }
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+
+module.exports = { addAttendance, removeAttendance, updateAttendance, getAbsentees };
