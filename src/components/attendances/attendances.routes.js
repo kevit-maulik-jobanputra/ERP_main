@@ -1,7 +1,8 @@
 const express = require('express');
 const authenticate = require('../../middlewares/auth');
 const validator = require('../../middlewares/validator');
-const { addAttendance, removeAttendance, updateAttendance, getAbsentees } = require('./attendances.controller');
+const { addAttendance, removeAttendance, updateAttendance, getAbsentees, filterAbsentees } = require('./attendances.controller');
+const { getFractionalAttendance } = require('./attendances.DAL');
 const { Attendance, attendanceValidationSchema, attendanceUpdateValidationSchema } = require('./attendances.model');
 
 class AttendanceRouter{
@@ -16,7 +17,10 @@ class AttendanceRouter{
         this.router.post('/attendances/add/:studentId', validator(attendanceValidationSchema), authenticate, addAttendance);
 
         // Getting Attendance
-        this.router.get('/attendances/:date', authenticate, getAbsentees)
+        this.router.get('/attendances/absentees/:date', authenticate, getAbsentees);
+
+        // Filtering Absentees
+        this.router.get('/attendances/filter/:percent', authenticate, filterAbsentees);
 
         // Removing Attendance
         this.router.delete('/attendances/remove/:studentId/:date', authenticate, removeAttendance);
