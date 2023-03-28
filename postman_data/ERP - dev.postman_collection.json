@@ -1,0 +1,971 @@
+{
+	"info": {
+		"_postman_id": "6dec2a08-e23c-4e56-9607-374855e69f33",
+		"name": "ERP - dev",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25945814"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Signup User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZTI0YmRmYTViNzQ2ODBlNmY4YTUiLCJpYXQiOjE2Nzk1NDkwNTN9.gjT__mrKD-FBUCDfEQTnpjBfiHEGQgFpEn7bVa6EyoPVtTYSy-Frsg9jYkKBiwBicK66TfVfZ54sYEDfv2XgpyrhwySllDuUk_KV1eJ_B7YaX796uXl5h-5zECcdwRALZvIhDDO4rZHy43UB_Q1VF5az273xFlQJkwWBDGXl8HRNEzHF19-xkY3wLIAJobPk83zhRR4FQAA2qIu9CqGh6xoy0-jGQSM4lKFZjrDzz8Qyjucrc4BABoR-8L-2OgbKZvgnW1z8ZDWSPKpYC9pGqodl9O_vTfqOFyP5cvFIvAuGlRDMiQzoZdk6DrebDkn69Dh8h9PDf1GxwXt3khj04g",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Sneha",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Jobanputra",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "sneha@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Sj@45444",
+									"type": "text"
+								},
+								{
+									"key": "designation",
+									"value": "AP",
+									"type": "text"
+								},
+								{
+									"key": "dept",
+									"value": "medicine",
+									"type": "text"
+								},
+								{
+									"key": "isAdmin",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZTI0YmRmYTViNzQ2ODBlNmY4YTUiLCJpYXQiOjE2Nzk2MzM2MTF9.HGI02uu21OEl7-MJFL0P22OcmGGF44vOCJixBU1XHYpzHLr28qm2LyXuW2heBJ0SnEeW9NfaBNmx-droxn1ysBQGQ4Rgkoq9dm73MQKSzVbTy4hGEvZ1IxJbsFazq1tnahVHHHQ_uLPXbTc2EHbv4YuMgVWiJp_hrU6c3BVoAZyx0BgwKsp9UQjov8koyGcfDNN0F__CWJS-OTf1AhD9cmTsQ3JNCVUaTtrOKj0wLpvGz0NKl6TpBoSZPb5FacNFB8Dp_8l1xndMV-40I-IfhGFX14lrSFdyKj_dkUBLW55Xp_kzqBz5nq-0GrR3iT0jzLQgqIcztTJkvwit9ijaLw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Maulik",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Jobanputra",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "maulik@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Mj@45444",
+									"type": "text"
+								},
+								{
+									"key": "designation",
+									"value": "AP",
+									"type": "text"
+								},
+								{
+									"key": "dept",
+									"value": "Ortho",
+									"type": "text"
+								},
+								{
+									"key": "isAdmin",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/update/641be24bdfa5b74680e6f8a5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"update",
+								"641be24bdfa5b74680e6f8a5"
+							],
+							"query": [
+								{
+									"key": "lastName",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "sneha@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Sj@45444",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZTI0YmRmYTViNzQ2ODBlNmY4YTUiLCJpYXQiOjE2Nzk2MzM2MTF9.HGI02uu21OEl7-MJFL0P22OcmGGF44vOCJixBU1XHYpzHLr28qm2LyXuW2heBJ0SnEeW9NfaBNmx-droxn1ysBQGQ4Rgkoq9dm73MQKSzVbTy4hGEvZ1IxJbsFazq1tnahVHHHQ_uLPXbTc2EHbv4YuMgVWiJp_hrU6c3BVoAZyx0BgwKsp9UQjov8koyGcfDNN0F__CWJS-OTf1AhD9cmTsQ3JNCVUaTtrOKj0wLpvGz0NKl6TpBoSZPb5FacNFB8Dp_8l1xndMV-40I-IfhGFX14lrSFdyKj_dkUBLW55Xp_kzqBz5nq-0GrR3iT0jzLQgqIcztTJkvwit9ijaLw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZTI0YmRmYTViNzQ2ODBlNmY4YTUiLCJpYXQiOjE2Nzk1NDkwNTN9.gjT__mrKD-FBUCDfEQTnpjBfiHEGQgFpEn7bVa6EyoPVtTYSy-Frsg9jYkKBiwBicK66TfVfZ54sYEDfv2XgpyrhwySllDuUk_KV1eJ_B7YaX796uXl5h-5zECcdwRALZvIhDDO4rZHy43UB_Q1VF5az273xFlQJkwWBDGXl8HRNEzHF19-xkY3wLIAJobPk83zhRR4FQAA2qIu9CqGh6xoy0-jGQSM4lKFZjrDzz8Qyjucrc4BABoR-8L-2OgbKZvgnW1z8ZDWSPKpYC9pGqodl9O_vTfqOFyP5cvFIvAuGlRDMiQzoZdk6DrebDkn69Dh8h9PDf1GxwXt3khj04g",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/users/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFhZGU1ZGI4NjdjYmU0NTliN2IzNGIiLCJpYXQiOjE2Nzk0ODk3ODR9.MJvJa4IYe7Ni616kRWhKgudSk5fFMSM3KXc8Zx1guSs",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/users/remove/641bdf53c43a5ef1b72ed4ea",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"remove",
+								"641bdf53c43a5ef1b72ed4ea"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Batches",
+			"item": [
+				{
+					"name": "Add Batch",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZTI0YmRmYTViNzQ2ODBlNmY4YTUiLCJpYXQiOjE2Nzk1NDkwNTN9.gjT__mrKD-FBUCDfEQTnpjBfiHEGQgFpEn7bVa6EyoPVtTYSy-Frsg9jYkKBiwBicK66TfVfZ54sYEDfv2XgpyrhwySllDuUk_KV1eJ_B7YaX796uXl5h-5zECcdwRALZvIhDDO4rZHy43UB_Q1VF5az273xFlQJkwWBDGXl8HRNEzHF19-xkY3wLIAJobPk83zhRR4FQAA2qIu9CqGh6xoy0-jGQSM4lKFZjrDzz8Qyjucrc4BABoR-8L-2OgbKZvgnW1z8ZDWSPKpYC9pGqodl9O_vTfqOFyP5cvFIvAuGlRDMiQzoZdk6DrebDkn69Dh8h9PDf1GxwXt3khj04g",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "year",
+									"value": "2019",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/batches/addbatch",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"batches",
+								"addbatch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Batch",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZTI0YmRmYTViNzQ2ODBlNmY4YTUiLCJpYXQiOjE2Nzk1NDkwNTN9.gjT__mrKD-FBUCDfEQTnpjBfiHEGQgFpEn7bVa6EyoPVtTYSy-Frsg9jYkKBiwBicK66TfVfZ54sYEDfv2XgpyrhwySllDuUk_KV1eJ_B7YaX796uXl5h-5zECcdwRALZvIhDDO4rZHy43UB_Q1VF5az273xFlQJkwWBDGXl8HRNEzHF19-xkY3wLIAJobPk83zhRR4FQAA2qIu9CqGh6xoy0-jGQSM4lKFZjrDzz8Qyjucrc4BABoR-8L-2OgbKZvgnW1z8ZDWSPKpYC9pGqodl9O_vTfqOFyP5cvFIvAuGlRDMiQzoZdk6DrebDkn69Dh8h9PDf1GxwXt3khj04g",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "year",
+									"value": "2019",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/batches/updatebatch/641c27b61c75f80315eae9f6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"batches",
+								"updatebatch",
+								"641c27b61c75f80315eae9f6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Branch",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZTI0YmRmYTViNzQ2ODBlNmY4YTUiLCJpYXQiOjE2Nzk2MzM2MTF9.HGI02uu21OEl7-MJFL0P22OcmGGF44vOCJixBU1XHYpzHLr28qm2LyXuW2heBJ0SnEeW9NfaBNmx-droxn1ysBQGQ4Rgkoq9dm73MQKSzVbTy4hGEvZ1IxJbsFazq1tnahVHHHQ_uLPXbTc2EHbv4YuMgVWiJp_hrU6c3BVoAZyx0BgwKsp9UQjov8koyGcfDNN0F__CWJS-OTf1AhD9cmTsQ3JNCVUaTtrOKj0wLpvGz0NKl6TpBoSZPb5FacNFB8Dp_8l1xndMV-40I-IfhGFX14lrSFdyKj_dkUBLW55Xp_kzqBz5nq-0GrR3iT0jzLQgqIcztTJkvwit9ijaLw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "EC",
+									"type": "text"
+								},
+								{
+									"key": "totalStudentsIntake",
+									"value": "60",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/batches/addbranch/641c27b61c75f80315eae9f6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"batches",
+								"addbranch",
+								"641c27b61c75f80315eae9f6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Batchlist",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZTI0YmRmYTViNzQ2ODBlNmY4YTUiLCJpYXQiOjE2Nzk2MzM2MTF9.HGI02uu21OEl7-MJFL0P22OcmGGF44vOCJixBU1XHYpzHLr28qm2LyXuW2heBJ0SnEeW9NfaBNmx-droxn1ysBQGQ4Rgkoq9dm73MQKSzVbTy4hGEvZ1IxJbsFazq1tnahVHHHQ_uLPXbTc2EHbv4YuMgVWiJp_hrU6c3BVoAZyx0BgwKsp9UQjov8koyGcfDNN0F__CWJS-OTf1AhD9cmTsQ3JNCVUaTtrOKj0wLpvGz0NKl6TpBoSZPb5FacNFB8Dp_8l1xndMV-40I-IfhGFX14lrSFdyKj_dkUBLW55Xp_kzqBz5nq-0GrR3iT0jzLQgqIcztTJkvwit9ijaLw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:3000/batches/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"batches",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Vacant Seats Analytics",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZTI0YmRmYTViNzQ2ODBlNmY4YTUiLCJpYXQiOjE2Nzk2MzM2MTF9.HGI02uu21OEl7-MJFL0P22OcmGGF44vOCJixBU1XHYpzHLr28qm2LyXuW2heBJ0SnEeW9NfaBNmx-droxn1ysBQGQ4Rgkoq9dm73MQKSzVbTy4hGEvZ1IxJbsFazq1tnahVHHHQ_uLPXbTc2EHbv4YuMgVWiJp_hrU6c3BVoAZyx0BgwKsp9UQjov8koyGcfDNN0F__CWJS-OTf1AhD9cmTsQ3JNCVUaTtrOKj0wLpvGz0NKl6TpBoSZPb5FacNFB8Dp_8l1xndMV-40I-IfhGFX14lrSFdyKj_dkUBLW55Xp_kzqBz5nq-0GrR3iT0jzLQgqIcztTJkvwit9ijaLw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:3000/batches/vacant?batch=2019&dept=CE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"batches",
+								"vacant"
+							],
+							"query": [
+								{
+									"key": "batch",
+									"value": "2019"
+								},
+								{
+									"key": "dept",
+									"value": "CE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Batch",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZTI0YmRmYTViNzQ2ODBlNmY4YTUiLCJpYXQiOjE2Nzk1NDkwNTN9.gjT__mrKD-FBUCDfEQTnpjBfiHEGQgFpEn7bVa6EyoPVtTYSy-Frsg9jYkKBiwBicK66TfVfZ54sYEDfv2XgpyrhwySllDuUk_KV1eJ_B7YaX796uXl5h-5zECcdwRALZvIhDDO4rZHy43UB_Q1VF5az273xFlQJkwWBDGXl8HRNEzHF19-xkY3wLIAJobPk83zhRR4FQAA2qIu9CqGh6xoy0-jGQSM4lKFZjrDzz8Qyjucrc4BABoR-8L-2OgbKZvgnW1z8ZDWSPKpYC9pGqodl9O_vTfqOFyP5cvFIvAuGlRDMiQzoZdk6DrebDkn69Dh8h9PDf1GxwXt3khj04g",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "year",
+									"value": "2019",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/batches/remove/641c1e1b0d5d4d392bb494c8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"batches",
+								"remove",
+								"641c1e1b0d5d4d392bb494c8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Branch",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZTI0YmRmYTViNzQ2ODBlNmY4YTUiLCJpYXQiOjE2Nzk1NDkwNTN9.gjT__mrKD-FBUCDfEQTnpjBfiHEGQgFpEn7bVa6EyoPVtTYSy-Frsg9jYkKBiwBicK66TfVfZ54sYEDfv2XgpyrhwySllDuUk_KV1eJ_B7YaX796uXl5h-5zECcdwRALZvIhDDO4rZHy43UB_Q1VF5az273xFlQJkwWBDGXl8HRNEzHF19-xkY3wLIAJobPk83zhRR4FQAA2qIu9CqGh6xoy0-jGQSM4lKFZjrDzz8Qyjucrc4BABoR-8L-2OgbKZvgnW1z8ZDWSPKpYC9pGqodl9O_vTfqOFyP5cvFIvAuGlRDMiQzoZdk6DrebDkn69Dh8h9PDf1GxwXt3khj04g",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "year",
+									"value": "2019",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/batches/removebranch/641c27b61c75f80315eae9f6/EC",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"batches",
+								"removebranch",
+								"641c27b61c75f80315eae9f6",
+								"EC"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Branch",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZTI0YmRmYTViNzQ2ODBlNmY4YTUiLCJpYXQiOjE2Nzk2MzM2MTF9.HGI02uu21OEl7-MJFL0P22OcmGGF44vOCJixBU1XHYpzHLr28qm2LyXuW2heBJ0SnEeW9NfaBNmx-droxn1ysBQGQ4Rgkoq9dm73MQKSzVbTy4hGEvZ1IxJbsFazq1tnahVHHHQ_uLPXbTc2EHbv4YuMgVWiJp_hrU6c3BVoAZyx0BgwKsp9UQjov8koyGcfDNN0F__CWJS-OTf1AhD9cmTsQ3JNCVUaTtrOKj0wLpvGz0NKl6TpBoSZPb5FacNFB8Dp_8l1xndMV-40I-IfhGFX14lrSFdyKj_dkUBLW55Xp_kzqBz5nq-0GrR3iT0jzLQgqIcztTJkvwit9ijaLw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "totalStudentsIntake",
+									"value": "60",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/batches/updatebranch/641c27b61c75f80315eae9f6/EC",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"batches",
+								"updatebranch",
+								"641c27b61c75f80315eae9f6",
+								"EC"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Students",
+			"item": [
+				{
+					"name": "Add Student",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZjQ2N2YxYWI3NTJmNTZkMTIyNzgiLCJpYXQiOjE2Nzk2NDE4MjF9.cjw-KDLox7q2PacUPkL9TvuwIbG8zMrG6cQsgNlGr3I_mmx-MOaIr3NVKZ6QpDVpLdw6H9qNgUiju0Umz_D_yveSOjqaE7IUtla452UDuDmwqBT4fSb7ruCVx5bZ1_fi56Y4MIVUfHIxqojxPBOqgTTSyR4ARehnOD6TqeEYaOcfbrQ_T6mC2EvdLn-pKe77lntxxhsmIBxIm1EzjFzxiBfPClQmsQH4bwZk43t9xpnLdcqVyt2i9sKg1Q0XAS20SJtfgHUitB6hqYhrHkWMkimoFzqZIRheuhIw9E7zmICHmQK484vXhRfxYnCSw1QK9d_yxS7sizG2To6j8K_M-A",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Nitish",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Jobs",
+									"type": "text"
+								},
+								{
+									"key": "contact",
+									"value": "9879514233",
+									"type": "text"
+								},
+								{
+									"key": "batch",
+									"value": "641c1e170d5d4d392bb494c4",
+									"type": "text"
+								},
+								{
+									"key": "branch",
+									"value": "641c3540d0051657d5410d45",
+									"type": "text"
+								},
+								{
+									"key": "currentSem",
+									"value": "6",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/students/addstudent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"students",
+								"addstudent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Student",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZjQ2N2YxYWI3NTJmNTZkMTIyNzgiLCJpYXQiOjE2Nzk2NDE4MjF9.cjw-KDLox7q2PacUPkL9TvuwIbG8zMrG6cQsgNlGr3I_mmx-MOaIr3NVKZ6QpDVpLdw6H9qNgUiju0Umz_D_yveSOjqaE7IUtla452UDuDmwqBT4fSb7ruCVx5bZ1_fi56Y4MIVUfHIxqojxPBOqgTTSyR4ARehnOD6TqeEYaOcfbrQ_T6mC2EvdLn-pKe77lntxxhsmIBxIm1EzjFzxiBfPClQmsQH4bwZk43t9xpnLdcqVyt2i9sKg1Q0XAS20SJtfgHUitB6hqYhrHkWMkimoFzqZIRheuhIw9E7zmICHmQK484vXhRfxYnCSw1QK9d_yxS7sizG2To6j8K_M-A",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Aditya",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Rajvir",
+									"type": "text"
+								},
+								{
+									"key": "contact",
+									"value": "9879514230",
+									"type": "text"
+								},
+								{
+									"key": "batch",
+									"value": "641c27b61c75f80315eae9f6",
+									"type": "text"
+								},
+								{
+									"key": "branch",
+									"value": "641c42c4b2f4fbacccfe894d",
+									"type": "text"
+								},
+								{
+									"key": "currentSem",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/students/update/641d7c36cc5163fe57b65045",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"students",
+								"update",
+								"641d7c36cc5163fe57b65045"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Students",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZjQ2N2YxYWI3NTJmNTZkMTIyNzgiLCJpYXQiOjE2Nzk2NDE4MjF9.cjw-KDLox7q2PacUPkL9TvuwIbG8zMrG6cQsgNlGr3I_mmx-MOaIr3NVKZ6QpDVpLdw6H9qNgUiju0Umz_D_yveSOjqaE7IUtla452UDuDmwqBT4fSb7ruCVx5bZ1_fi56Y4MIVUfHIxqojxPBOqgTTSyR4ARehnOD6TqeEYaOcfbrQ_T6mC2EvdLn-pKe77lntxxhsmIBxIm1EzjFzxiBfPClQmsQH4bwZk43t9xpnLdcqVyt2i9sKg1Q0XAS20SJtfgHUitB6hqYhrHkWMkimoFzqZIRheuhIw9E7zmICHmQK484vXhRfxYnCSw1QK9d_yxS7sizG2To6j8K_M-A",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Yealy Analytics",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZjQ2N2YxYWI3NTJmNTZkMTIyNzgiLCJpYXQiOjE2Nzk2NDE4MjF9.cjw-KDLox7q2PacUPkL9TvuwIbG8zMrG6cQsgNlGr3I_mmx-MOaIr3NVKZ6QpDVpLdw6H9qNgUiju0Umz_D_yveSOjqaE7IUtla452UDuDmwqBT4fSb7ruCVx5bZ1_fi56Y4MIVUfHIxqojxPBOqgTTSyR4ARehnOD6TqeEYaOcfbrQ_T6mC2EvdLn-pKe77lntxxhsmIBxIm1EzjFzxiBfPClQmsQH4bwZk43t9xpnLdcqVyt2i9sKg1Q0XAS20SJtfgHUitB6hqYhrHkWMkimoFzqZIRheuhIw9E7zmICHmQK484vXhRfxYnCSw1QK9d_yxS7sizG2To6j8K_M-A",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/students/yearlyanalytics",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"students",
+								"yearlyanalytics"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Student",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZjQ2N2YxYWI3NTJmNTZkMTIyNzgiLCJpYXQiOjE2Nzk2NDE4MjF9.cjw-KDLox7q2PacUPkL9TvuwIbG8zMrG6cQsgNlGr3I_mmx-MOaIr3NVKZ6QpDVpLdw6H9qNgUiju0Umz_D_yveSOjqaE7IUtla452UDuDmwqBT4fSb7ruCVx5bZ1_fi56Y4MIVUfHIxqojxPBOqgTTSyR4ARehnOD6TqeEYaOcfbrQ_T6mC2EvdLn-pKe77lntxxhsmIBxIm1EzjFzxiBfPClQmsQH4bwZk43t9xpnLdcqVyt2i9sKg1Q0XAS20SJtfgHUitB6hqYhrHkWMkimoFzqZIRheuhIw9E7zmICHmQK484vXhRfxYnCSw1QK9d_yxS7sizG2To6j8K_M-A",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/students/remove/641d8756365432c20ddf3cec",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"students",
+								"remove",
+								"641d8756365432c20ddf3cec"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Attendances",
+			"item": [
+				{
+					"name": "Add Attendance",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZjQ2N2YxYWI3NTJmNTZkMTIyNzgiLCJpYXQiOjE2Nzk2NDE4MjF9.cjw-KDLox7q2PacUPkL9TvuwIbG8zMrG6cQsgNlGr3I_mmx-MOaIr3NVKZ6QpDVpLdw6H9qNgUiju0Umz_D_yveSOjqaE7IUtla452UDuDmwqBT4fSb7ruCVx5bZ1_fi56Y4MIVUfHIxqojxPBOqgTTSyR4ARehnOD6TqeEYaOcfbrQ_T6mC2EvdLn-pKe77lntxxhsmIBxIm1EzjFzxiBfPClQmsQH4bwZk43t9xpnLdcqVyt2i9sKg1Q0XAS20SJtfgHUitB6hqYhrHkWMkimoFzqZIRheuhIw9E7zmICHmQK484vXhRfxYnCSw1QK9d_yxS7sizG2To6j8K_M-A",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "date",
+									"value": "2019-03-13",
+									"type": "text"
+								},
+								{
+									"key": "isPresent",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/attendances/add/641d92749f5cc43a7461ea2b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"attendances",
+								"add",
+								"641d92749f5cc43a7461ea2b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Attendance",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZjQ2N2YxYWI3NTJmNTZkMTIyNzgiLCJpYXQiOjE2Nzk2NDE4MjF9.cjw-KDLox7q2PacUPkL9TvuwIbG8zMrG6cQsgNlGr3I_mmx-MOaIr3NVKZ6QpDVpLdw6H9qNgUiju0Umz_D_yveSOjqaE7IUtla452UDuDmwqBT4fSb7ruCVx5bZ1_fi56Y4MIVUfHIxqojxPBOqgTTSyR4ARehnOD6TqeEYaOcfbrQ_T6mC2EvdLn-pKe77lntxxhsmIBxIm1EzjFzxiBfPClQmsQH4bwZk43t9xpnLdcqVyt2i9sKg1Q0XAS20SJtfgHUitB6hqYhrHkWMkimoFzqZIRheuhIw9E7zmICHmQK484vXhRfxYnCSw1QK9d_yxS7sizG2To6j8K_M-A",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:3000/attendances/remove/641d92749f5cc43a7461ea2b/2019-03-13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"attendances",
+								"remove",
+								"641d92749f5cc43a7461ea2b",
+								"2019-03-13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Absentees",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZjQ2N2YxYWI3NTJmNTZkMTIyNzgiLCJpYXQiOjE2Nzk2NDE4MjF9.cjw-KDLox7q2PacUPkL9TvuwIbG8zMrG6cQsgNlGr3I_mmx-MOaIr3NVKZ6QpDVpLdw6H9qNgUiju0Umz_D_yveSOjqaE7IUtla452UDuDmwqBT4fSb7ruCVx5bZ1_fi56Y4MIVUfHIxqojxPBOqgTTSyR4ARehnOD6TqeEYaOcfbrQ_T6mC2EvdLn-pKe77lntxxhsmIBxIm1EzjFzxiBfPClQmsQH4bwZk43t9xpnLdcqVyt2i9sKg1Q0XAS20SJtfgHUitB6hqYhrHkWMkimoFzqZIRheuhIw9E7zmICHmQK484vXhRfxYnCSw1QK9d_yxS7sizG2To6j8K_M-A",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:3000/attendances/absentees/2019-03-14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"attendances",
+								"absentees",
+								"2019-03-14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Absentees",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZjQ2N2YxYWI3NTJmNTZkMTIyNzgiLCJpYXQiOjE2Nzk2NDE4MjF9.cjw-KDLox7q2PacUPkL9TvuwIbG8zMrG6cQsgNlGr3I_mmx-MOaIr3NVKZ6QpDVpLdw6H9qNgUiju0Umz_D_yveSOjqaE7IUtla452UDuDmwqBT4fSb7ruCVx5bZ1_fi56Y4MIVUfHIxqojxPBOqgTTSyR4ARehnOD6TqeEYaOcfbrQ_T6mC2EvdLn-pKe77lntxxhsmIBxIm1EzjFzxiBfPClQmsQH4bwZk43t9xpnLdcqVyt2i9sKg1Q0XAS20SJtfgHUitB6hqYhrHkWMkimoFzqZIRheuhIw9E7zmICHmQK484vXhRfxYnCSw1QK9d_yxS7sizG2To6j8K_M-A",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:3000/attendances/filter/75",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"attendances",
+								"filter",
+								"75"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Attendance",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "auth_token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZjQ2N2YxYWI3NTJmNTZkMTIyNzgiLCJpYXQiOjE2Nzk2NDE4MjF9.cjw-KDLox7q2PacUPkL9TvuwIbG8zMrG6cQsgNlGr3I_mmx-MOaIr3NVKZ6QpDVpLdw6H9qNgUiju0Umz_D_yveSOjqaE7IUtla452UDuDmwqBT4fSb7ruCVx5bZ1_fi56Y4MIVUfHIxqojxPBOqgTTSyR4ARehnOD6TqeEYaOcfbrQ_T6mC2EvdLn-pKe77lntxxhsmIBxIm1EzjFzxiBfPClQmsQH4bwZk43t9xpnLdcqVyt2i9sKg1Q0XAS20SJtfgHUitB6hqYhrHkWMkimoFzqZIRheuhIw9E7zmICHmQK484vXhRfxYnCSw1QK9d_yxS7sizG2To6j8K_M-A",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "isPresent",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/attendances/update/641d92749f5cc43a7461ea2b/2019-03-13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"attendances",
+								"update",
+								"641d92749f5cc43a7461ea2b",
+								"2019-03-13"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
