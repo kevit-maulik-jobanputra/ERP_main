@@ -36,22 +36,22 @@ const getBatches = async (req, res, next) => {
 const vacantSeatsAnalytics = async (req, res, next) => {
     try {
         if(req.adminId){
-            const { year, dept } = req.query;
+            const { batch, dept } = req.query;
             const batches = await getVacantSeats(next);
             if(batches.length === 0){
                 next(new Err(404, "No batches Found!", "BATCHES_NOT_FOUND"))
             }else{
-                if(year){
-                    const analytics = batches.filter(batch => {
-                        if(batch.batch == year){
+                if(batch){
+                    const analytics = batches.filter(year => {
+                        if(year.batch == batch){
                             if(dept){
-                                for (const field in batch.branches){
+                                for (const field in year.branches){
                                     if(field !== dept){
-                                        delete batch.branches[field];
+                                        delete year.branches[field];
                                     } 
                                 }
                             }
-                            return batch
+                            return year
                         };
                     })
                     res.status(200).json(analytics);
