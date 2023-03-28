@@ -1,0 +1,23 @@
+[{
+  "_id": {
+    "$oid": "641be24bdfa5b74680e6f8a5"
+  },
+  "firstName": "abc",
+  "lastName": "xyz",
+  "email": "abc@email.com",
+  "designation": "example",
+  "dept": "example",
+  "password": "$2a$10$9KFIKBhxi7hGnljel.umDOcKJW4iBJMZwR5qjsnemumTERJGno.Qa",
+  "isAdmin": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1679549003627"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680000279699"
+    }
+  },
+  "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFiZTI0YmRmYTViNzQ2ODBlNmY4YTUiLCJpYXQiOjE2Nzk2MzM2MTF9.HGI02uu21OEl7-MJFL0P22OcmGGF44vOCJixBU1XHYpzHLr28qm2LyXuW2heBJ0SnEeW9NfaBNmx-droxn1ysBQGQ4Rgkoq9dm73MQKSzVbTy4hGEvZ1IxJbsFazq1tnahVHHHQ_uLPXbTc2EHbv4YuMgVWiJp_hrU6c3BVoAZyx0BgwKsp9UQjov8koyGcfDNN0F__CWJS-OTf1AhD9cmTsQ3JNCVUaTtrOKj0wLpvGz0NKl6TpBoSZPb5FacNFB8Dp_8l1xndMV-40I-IfhGFX14lrSFdyKj_dkUBLW55Xp_kzqBz5nq-0GrR3iT0jzLQgqIcztTJkvwit9ijaLw"
+}]

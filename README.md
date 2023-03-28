@@ -12,6 +12,8 @@ To start using this ERP portal:
 
 -> Run npm run dev from the CLI to start the portal.
 
--> Import the batch collection from /dump to the database.
+-> Import the batch & users collections from /dump to the database. 
 
 -> Import the postman collection to postman app to start calling the REST APIs. 
+
+-> Admin email and password are abc@email.com and Abc@1234 respectively. You can login with the same and then update the details according to whatever suits you by using the 'Update User' API.
