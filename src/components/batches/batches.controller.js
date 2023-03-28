@@ -1,4 +1,4 @@
-const { createBatch, findBatches, getBatchById } = require('./batches.DAL');
+const { createBatch, findBatches, getBatchById, getVacantSeats } = require('./batches.DAL');
 const { Err } = require('../../middlewares/errorHandler');
 
 const addBatch = async (req, res, next) => {
@@ -21,9 +21,44 @@ const getBatches = async (req, res, next) => {
         if(req.adminId){
             const batches = await findBatches(next);
             if(batches.length === 0){
-                next(new Err(404, "No users Found!", "USER_NOT_FOUND"))
+                next(new Err(404, "No batches Found!", "BATCHES_NOT_FOUND"))
             }else{
                 res.status(200).json(batches);
+            }
+        }else{
+            next(new Err(403, 'You are not authorized!', "AUTHORIZATION_FAILED"));
+        }
+    } catch (error) {
+        next(error)
+    }
+};
+
+const vacantSeatsAnalytics = async (req, res, next) => {
+    try {
+        if(req.adminId){
+            const { year, dept } = req.query;
+            const batches = await getVacantSeats(next);
+            if(batches.length === 0){
+                next(new Err(404, "No batches Found!", "BATCHES_NOT_FOUND"))
+            }else{
+                if(year){
+                    const analytics = batches.filter(batch => {
+                        if(batch.batch == year){
+                            if(dept){
+                                for (const field in batch.branches){
+                                    if(field !== dept){
+                                        delete batch.branches[field];
+                                    } 
+                                }
+                            }
+                            return batch
+                        };
+                    })
+                    res.status(200).json(analytics);
+                }else{
+                    res.status(200).json(batches);
+                }
+                
             }
         }else{
             next(new Err(403, 'You are not authorized!', "AUTHORIZATION_FAILED"));
@@ -131,4 +166,4 @@ const removeBranch = async (req, res, next) => {
 };
 
 
-module.exports = { addBatch, getBatches, removeBatch, updateBatch, addBranch, updateBranch, removeBranch }
+module.exports = { addBatch, getBatches, removeBatch, updateBatch, addBranch, updateBranch, removeBranch, vacantSeatsAnalytics }

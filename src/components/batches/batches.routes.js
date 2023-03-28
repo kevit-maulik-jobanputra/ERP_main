@@ -1,5 +1,5 @@
 const express = require('express');
-const { addBatch, getBatches, removeBatch, updateBatch, addBranch, removeBranch, updateBranch } = require('./batches.controller');
+const { addBatch, getBatches, removeBatch, updateBatch, addBranch, removeBranch, updateBranch, vacantSeatsAnalytics } = require('./batches.controller');
 const authenticate = require('../../middlewares/auth');
 const validator = require('../../middlewares/validator');
 const { batchAddValidationSchema, branchValidationSchema, updateBranchValidationSchema } = require('./batches.model');
@@ -17,6 +17,9 @@ class BatchRouter{
 
         // Viewing all Batches
         this.router.get('/batches', authenticate, getBatches);
+
+        // Getting Vacant Seats Analytics
+        this.router.get('/batches/vacant', authenticate, vacantSeatsAnalytics)
 
         // Updating a Batch
         this.router.put('/batches/updatebatch/:id', validator(batchAddValidationSchema), authenticate, updateBatch);

@@ -12,7 +12,7 @@ const batchSchema = new mongoose.Schema({
             required: true
         },
         totalStudentsIntake: {
-            type: String,
+            type: Number,
             required: true
         }
     }]
