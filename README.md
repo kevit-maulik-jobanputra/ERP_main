@@ -6,7 +6,7 @@ To start using this ERP portal:
 
 -> Run npm install to install all the node modules.
 
--> Add a .env file to the root of the folder and define and initialize variables inside example.env.
+-> Add a .env file to the root of the folder and define and initialize the variables that are inside example.env.
 
 -> Add two files JWT_ADMIN.key and JWT_staff.key to /src/keys folder with different keys in both the files.
 
