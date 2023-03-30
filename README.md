@@ -8,7 +8,7 @@ To start using this ERP portal:
 
 -> Add a .env file to the root of the folder and define and initialize the variables that are inside example.env.
 
--> Add two files JWT_ADMIN.key and JWT_staff.key to /src/keys folder with different keys in both the files.
+-> Add two files JWT_ADMIN.key and JWT_staff.key to /src/keys folder with different RSA256 keys in both the files. You can generate the same from online RSA256 keys generator like https://cryptotools.net/rsagen.
 
 -> Run npm start from the CLI to start the portal.
 
