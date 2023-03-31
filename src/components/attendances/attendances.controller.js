@@ -29,7 +29,9 @@ const updateAttendance = async (req, res, next) => {
             if(!attendance){
                 next(new Err(400, "No such Date Found!", "BAD_REQUEST"))
             }else{
-                attendance.isPresent = req.body.isPresent;
+                for(const field in req.body){
+                    attendance[field] = req.body[field];
+                };
                 await student.save();
                 res.status(200).json(student);
             }

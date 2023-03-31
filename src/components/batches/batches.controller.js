@@ -102,7 +102,9 @@ const updateBranch = async (req, res, next) => {
             if(!branch){
                 next(new Err(400, "No such Branch Found!", "BAD_REQUEST"))
             }else{
-                branch.totalStudentsIntake = req.body.totalStudentsIntake
+                for(const field in req.body){
+                    branch[field] = req.body[field];
+                }
                 await batch.save();
                 res.status(200).json(batch);
             }

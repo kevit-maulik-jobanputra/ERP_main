@@ -45,6 +45,23 @@ const attendanceValidationSchema = {
 };
 
 const attendanceUpdateValidationSchema = {
+    date: {
+        trim:true,
+        isDate: true,
+        errorMessage: 'Enter a valid date!',
+        custom: {
+            options: ((value, {req}) => {
+                return Attendance.findOne({student: req.params.studentId}).
+                then(student => {
+                    const duplicate = student.attendance.find(day => day.date.toDateString() === new Date(value).toDateString());
+                    if(duplicate && value !== req.params.date){
+                        throw new Error('Date already exists!')
+                    };
+                    return true;
+                })
+            })
+        }
+    },
     isPresent: {
         trim: true,
         isBoolean : true,
