@@ -8,8 +8,7 @@
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "prepare": "husky install",
-    "format": "npx prettier --write \"src/**/*.js\"",
-    "lint": "npx eslint \"{src,apps,libs,test}/**/*.js\" --fix"
+    "format": "npx prettier --write \"src/**/*.js\""
   },
   "repository": {
     "type": "git",
@@ -38,19 +37,12 @@
     "pino-http": "^8.3.3"
   },
   "devDependencies": {
-    "eslint": "^8.37.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.3",
-    "lint-staged": "^13.2.0",
     "pino-pretty": "^10.0.0",
     "prettier": "^2.8.7"
   },
   "lint-staged": {
     "*.js": [
-      "npm run lint",
       "npm run format"
     ]
   }
