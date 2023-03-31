@@ -8,10 +8,12 @@ const mongoose = require('mongoose');
 const { PORT, NODE_ENV } = require('./environment/config');
 const { url } = require('./databases/mongodb');
 const { errorHandler } = require('./middlewares/errorHandler');
+const { customLogger, pinoFormateConfig } = require('./services/logger')
 
 class App{
     constructor(routes){
         this.app = express();
+        this.logger = pinoFormateConfig;
         this.databaseConnection();
         this.initializeMiddleWares();
         this.initializeRoutes(routes);
@@ -21,10 +23,10 @@ class App{
     databaseConnection(){
         mongoose.connect(url)
         .then(() => {
-            console.log(`====== DB - Connected! =======`);
-            console.log(`==============================`);
+            this.logger.info(`====== DB - Connected! =======`);
+            this.logger.info(`==============================`);
         })
-        .catch(err => console.log(`DataBase Error - ${err}`))
+        .catch(err => this.logger.error(`DataBase Error - ${err}`))
     };
 
     initializeRoutes(routes){
@@ -39,7 +41,8 @@ class App{
         this.app.use(hpp());
         this.app.use(helmet());
         this.app.use(compression());
-        this.app.use(cors());   
+        this.app.use(cors());
+        this.app.use(customLogger[NODE_ENV]);
     };
 
     initializeErrorHandler(){
@@ -48,11 +51,11 @@ class App{
 
     listen(){
         this.app.listen(PORT, () => {
-            console.log(`==============================`);
-            console.log(`=== NODE_ENV - ${NODE_ENV} ===`);
-            console.log(`==============================`);
-            console.log(`Server Up and running at ${PORT}!`);
-            console.log(`==============================`);
+            this.logger.info(`==============================`);
+            this.logger.info(`=== NODE_ENV - ${NODE_ENV} ===`);
+            this.logger.info(`==============================`);
+            this.logger.info(`Server Up and running at ${PORT}!`);
+            this.logger.info(`==============================`);
         });
     };
 }
