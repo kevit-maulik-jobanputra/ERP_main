@@ -6,6 +6,7 @@ const authenticate = require('../../middlewares/auth');
 
 class StudentRouter{
     constructor(){
+        this.path = "students";
         this.router = express.Router();
         this.initializeRoutes();
     }
@@ -13,19 +14,19 @@ class StudentRouter{
     initializeRoutes(){
 
         // Adding a Student
-        this.router.post('/students/addstudent', validator(studentValidationSchema), authenticate, addStudent);
+        this.router.post(`/${this.path}/addstudent`, validator(studentValidationSchema), authenticate, addStudent);
 
         // Listing Students
-        this.router.get('/students', authenticate, getStudents);
+        this.router.get(`/${this.path}`, authenticate, getStudents);
 
         // Listing Total Students YearWise & BranchWise
-        this.router.get('/students/yearlyanalytics', authenticate, getTotalStudents)
+        this.router.get(`/${this.path}/yearlyanalytics`, authenticate, getTotalStudents)
 
         // Updating a Student
-        this.router.put('/students/update/:id', validator(studentValidationSchema), authenticate, updateStudent)
+        this.router.put(`/${this.path}/update/:id`, validator(studentValidationSchema), authenticate, updateStudent)
 
         // Deleting a Student
-        this.router.delete('/students/remove/:id', authenticate, removeStudent)
+        this.router.delete(`/${this.path}/remove/:id`, authenticate, removeStudent)
     }
 };
 

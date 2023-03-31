@@ -51,8 +51,8 @@ const customLogger = {
         customSuccessMessage(res) {
             return `Request completed with statusCode ${res.statusCode}`;
         },
-        customErrorMessage(error) {
-            return error.message;
+        customErrorMessage(err) {
+            return err.message;
         },
         customAttributeKeys: {
             req: 'HTTP_Request',

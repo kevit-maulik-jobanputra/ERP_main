@@ -6,14 +6,10 @@ const { JWT_ADMIN, JWT_STAFF } = require('../../environment/config');
 
 const signUpUser =  async (req, res, next) => {
     try {
-        if(req.adminId){
-            const user = await createSingleUser(req.body, next);
-            if(user){
-                res.status(200).json(user);
-            };
-        }else{
-            next(new Err(403, 'You are not authorized!', "AUTHORIZATION_FAILED"))
-        }
+        const user = await createSingleUser(req.body, next);
+        if(user){
+            res.status(200).json(user);
+        };
     } catch (error) {
         next(error)
     };
@@ -21,18 +17,14 @@ const signUpUser =  async (req, res, next) => {
 
 const getUsers = async (req, res, next) => { 
     try {
-        if(!req.adminId){
-            next(new Err(403, 'You are not authorized!', "AUTHORIZATION_FAILED"))
-        }else{
-            const users = await findUsers(next);
-            if(users){
-                if(users.length === 0){
-                    next(new Err(404, "No users Found!", "USER_NOT_FOUND"))
-                }else{
-                    res.status(200).json(users);
-                };
+        const users = await findUsers(next);
+        if(users){
+            if(users.length === 0){
+                next(new Err(404, "No users Found!", "USER_NOT_FOUND"))
+            }else{
+                res.status(200).json(users);
             };
-        }
+        };
     }catch (err) {
         next(err)
     };
@@ -65,20 +57,16 @@ const loginUser = async (req, res, next) => {
 
 const updateUser = async (req, res, next) => {
     try {
-        if(!req.adminId) {
-            next(new Err(403, 'You are not authorized!', "AUTHORIZATION_FAILED"))
-        } else {
-            const { id } = req.params;
-            const user = await findById(id, next);
-            if(user){
-                for(const field in req.body){
-                    user[field] = req.body[field];
-                };
-                await user.save();
-                res.status(200).json(user);
-            }else{
-                next(new Err(400, "No user found!", "BAD_REQUEST"))
-            }
+        const { id } = req.params;
+        const user = await findById(id, next);
+        if(user){
+            for(const field in req.body){
+                user[field] = req.body[field];
+            };
+            await user.save();
+            res.status(200).json(user);
+        }else{
+            next(new Err(400, "No user found!", "BAD_REQUEST"))
         }
     } catch (error) {
         next(error)
@@ -87,15 +75,11 @@ const updateUser = async (req, res, next) => {
 
 const logOut = async(req, res, next) => {
     try {
-        if (!req.adminId && !req.staffId) {
-            next(new Err(401, 'Login First!', "AUTHENTICATION_FAILED"))
-        } else {
-            const id = !req.adminId ? req.staffId : req.adminId;
-            const user = await findById(id, next);
-            user.token = undefined;
-            await user.save();
-            res.status(200).json({message : "User loggedOut Successfully!"});
-        }
+        const id = !req.adminId ? req.staffId : req.adminId;
+        const user = await findById(id, next);
+        user.token = undefined;
+        await user.save();
+        res.status(200).json({message : "User loggedOut Successfully!"});
     } catch (error) {
         next(error)
     }
@@ -103,17 +87,13 @@ const logOut = async(req, res, next) => {
 
 const deleteUser = async (req, res, next) => {
     try {
-        if(!req.adminId){
-            next(new Err(403, 'You are not authorized!', "AUTHORIZATION_FAILED"))
+        const { id } = req.params;
+        const user = await findById(id, next);
+        if(user){
+            await user.deleteOne();
+            res.status(200).json(user);
         }else{
-            const { id } = req.params;
-            const user = await findById(id, next);
-            if(user){
-                await user.deleteOne();
-                res.status(200).json(user);
-            }else{
-                next(new Err(400, "No user found!", "BAD_REQUEST"))
-            }
+            next(new Err(400, "No user found!", "BAD_REQUEST"))
         }
     } catch (error) {
         next(error)

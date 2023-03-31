@@ -83,13 +83,15 @@ const userSignupValidationSchema = {
     isAdmin: {
         custom: {
             options: (value => {
-                return User.findOne({isAdmin:value})
-                .then(user => {
-                    if(user){
-                        throw new Error('Admin already exists!')
-                    };
-                    return true;
-                })
+                if(value){
+                    return User.findOne({isAdmin:value})
+                    .then(user => {
+                        if(user){
+                            throw new Error('Admin already exists!')
+                        };
+                    })
+                };
+                return true;
             })
         }
     }

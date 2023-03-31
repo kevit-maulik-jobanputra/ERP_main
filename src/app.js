@@ -20,6 +20,16 @@ class App{
         this.initializeErrorHandler();
     };
 
+    listen(){
+        this.app.listen(PORT, () => {
+            this.logger.info(`==============================`);
+            this.logger.info(`=== NODE_ENV - ${NODE_ENV} ===`);
+            this.logger.info(`==============================`);
+            this.logger.info(`Server Up and running at ${PORT}!`);
+            this.logger.info(`==============================`);
+        });
+    };
+
     databaseConnection(){
         mongoose.connect(url)
         .then(() => {
@@ -42,22 +52,12 @@ class App{
         this.app.use(helmet());
         this.app.use(compression());
         this.app.use(cors());
-        this.app.use(customLogger[NODE_ENV]);
     };
 
     initializeErrorHandler(){
         this.app.use(errorHandler);
     };
 
-    listen(){
-        this.app.listen(PORT, () => {
-            this.logger.info(`==============================`);
-            this.logger.info(`=== NODE_ENV - ${NODE_ENV} ===`);
-            this.logger.info(`==============================`);
-            this.logger.info(`Server Up and running at ${PORT}!`);
-            this.logger.info(`==============================`);
-        });
-    };
 }
 
 module.exports = App;

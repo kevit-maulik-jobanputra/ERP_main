@@ -7,6 +7,7 @@ const { Attendance, attendanceValidationSchema, attendanceUpdateValidationSchema
 
 class AttendanceRouter{
     constructor(){
+        this.path = "attendances"
         this.router = express.Router();
         this.initializeRoutes();
     };
@@ -14,19 +15,19 @@ class AttendanceRouter{
     initializeRoutes(){
 
         // Adding Attendance
-        this.router.post('/attendances/add/:studentId', validator(attendanceValidationSchema), authenticate, addAttendance);
+        this.router.post(`/${this.path}/add/:studentId`, validator(attendanceValidationSchema), authenticate, addAttendance);
 
         // Getting Attendance
-        this.router.get('/attendances/absentees/:date', authenticate, getAbsentees);
+        this.router.get(`/${this.path}/absentees/:date`, authenticate, getAbsentees);
 
         // Filtering Absentees
-        this.router.get('/attendances/filter/:percent', authenticate, filterAbsentees);
+        this.router.get(`/${this.path}/filter/:percent`, authenticate, filterAbsentees);
 
         // Removing Attendance
-        this.router.delete('/attendances/remove/:studentId/:date', authenticate, removeAttendance);
+        this.router.delete(`/${this.path}/remove/:studentId/:date`, authenticate, removeAttendance);
 
         // Updating Attendance
-        this.router.put('/attendances/update/:studentId/:date', validator(attendanceUpdateValidationSchema), authenticate, updateAttendance)
+        this.router.put(`/${this.path}/update/:studentId/:date`, validator(attendanceUpdateValidationSchema), authenticate, updateAttendance)
     }
 }
 

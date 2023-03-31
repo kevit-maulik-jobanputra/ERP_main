@@ -3,9 +3,11 @@ const { signUpUser, getUsers, loginUser, deleteUser, updateUser, logOut } = requ
 const validator = require('../../middlewares/validator');
 const { userSignupValidationSchema, userLoginValidationSchema, userUpdateValidationSchema } = require('./users.model');
 const authenticate = require('../../middlewares/auth')
+const checkAdmin = require('../../middlewares/checkAdmin')
 
 class UserRouter{
     constructor(){
+        this.path = "users";
         this.router = express.Router();
         this.initializeRoutes();
     };
@@ -13,22 +15,22 @@ class UserRouter{
     initializeRoutes(){
 
         // SignUp New User
-        this.router.post('/users/signup', validator(userSignupValidationSchema), authenticate, signUpUser);
+        this.router.post(`/${this.path}/signup`, validator(userSignupValidationSchema), authenticate, checkAdmin, signUpUser);
 
         // Get all Users
-        this.router.get('/users', authenticate, getUsers)
+        this.router.get(`/${this.path}`, authenticate, checkAdmin, getUsers)
 
         // Login User
-        this.router.post('/users/login', validator(userLoginValidationSchema), loginUser);
+        this.router.post(`/${this.path}/auth/login`, validator(userLoginValidationSchema), loginUser);
 
         // Update User
-        this.router.put('/users/update/:id', validator(userUpdateValidationSchema), authenticate, updateUser)
+        this.router.put(`/${this.path}/update/:id`, validator(userUpdateValidationSchema), authenticate, checkAdmin, updateUser)
 
         // Remove User
-        this.router.delete('/users/remove/:id', authenticate, deleteUser);
+        this.router.delete(`/${this.path}/remove/:id`, authenticate, checkAdmin, deleteUser);
 
         // LogOut User
-        this.router.post('/users/logout', authenticate, logOut);
+        this.router.post(`/${this.path}/auth/logout`, authenticate, logOut);
     };
 
 }
